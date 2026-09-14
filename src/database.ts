@@ -7,6 +7,12 @@ const sequelize = new Sequelize(
   process.env.DATABASE_URI ?? '',
   {
     dialect: process.env.DB_DIALECT as Dialect ?? 'mysql',
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
   }
 );
 

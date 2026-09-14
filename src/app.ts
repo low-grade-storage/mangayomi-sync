@@ -36,6 +36,10 @@ auth.registerEndpoints(app);
 data.registerEndpoints(app);
 sync.registerEndpoints(app);
 
+app.get("/", (req: Request, res: Response) => {
+    res.status(200).send("OK");
+});
+
 app.listen(process.env.PORT, () => {
     console.log(`Server is running at http://0.0.0.0:${process.env.PORT}`);
 });

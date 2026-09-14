@@ -51,9 +51,10 @@ export function registerEndpoints(app: Express): void {
         },
         process.env.JWT_SECRET_KEY ?? "mangayomi",
         {
-          expiresIn: `${process.env.JWT_EXPIRATION_DAYS ?? "365"}d`,
+          expiresIn: `${process.env.JWT_EXPIRATION_DAYS ?? "365"}d` as any,
         }
       );
+      res.setHeader("Set-Cookie", `id=${token}; Path=/; HttpOnly; SameSite=Lax`);
       res.status(200).json({ token: token });
     } catch (error: any) {
       console.log("Login failed: ", error);
